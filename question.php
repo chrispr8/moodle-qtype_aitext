@@ -204,7 +204,6 @@ class qtype_aitext_question extends question_graded_automatically_with_countback
      */
     public function build_full_ai_prompt($response, $aiprompt, $defaultmark, $markscheme): string {
         $responsetext = strip_tags($response);
-            $responsetext = '[['.$responsetext.']]';
             $prompt = get_config('qtype_aitext', 'prompt');
             $prompt = preg_replace("/\[responsetext\]/", $responsetext, $prompt);
             $prompt .= ' '.trim($aiprompt);
