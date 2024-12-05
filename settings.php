@@ -44,7 +44,20 @@ if ($ADMIN->fulltree) {
         'qtype_aitext/prompt',
         new lang_string('prompt', 'qtype_aitext'),
         new lang_string('prompt_setting', 'qtype_aitext'),
-        'in [responsetext] analyse but do not mention the part between [[ and ]] as follows:',
+        '
+Du bist ein Mathe-Tutor, der dem Schüler hilfreiches Feedback zu Übungsaufgaben gibt.
+Du bekommst eine Aufgabe/Frage, eine Musterlösung und die Antwort des Schülers.
+Wenn der Schüler einen Fehler macht, versuche hilfreiche Hinweise zu geben, **ohne** die Lösung direkt zu verraten.
+
+# Frage
+[question]
+
+# Musterlösung
+[solution]
+
+# Antwort
+[response]
+        ',
         PARAM_RAW,
         20,
         3

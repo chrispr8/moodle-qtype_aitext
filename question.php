@@ -203,10 +203,16 @@ class qtype_aitext_question extends question_graded_automatically_with_countback
      * @return string;
      */
     public function build_full_ai_prompt($response, $aiprompt, $defaultmark, $markscheme): string {
-        $responsetext = strip_tags($response);
-            $prompt = get_config('qtype_aitext', 'prompt');
+        $prompt = get_config('qtype_aitext', 'prompt');
+            $responsetext = strip_tags($response);
             $prompt = preg_replace("/\[responsetext\]/", $responsetext, $prompt);
-            $prompt .= ' '.trim($aiprompt);
+            $sample_solution = strip_tags($aiprompt);
+            $prompt = preg_replace("/\[solution\]", $sample_solution, $prompt);
+            // TODO: Test if correct reference!
+            $qtext = $this->question->questiontext;
+            $prompt_questiontext = strip_tags($qtext);
+            $prompt = preg_replace("/\[question]\]", $prompt_questiontext, $prompt);
+            
 
         if ($markscheme > '') {
             // Tell the LLM how to mark the submission.
